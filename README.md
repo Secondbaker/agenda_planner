@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/Secondbaker/agenda_planner.svg?branch=master)](https://travis-ci.com/Secondbaker/agenda_planner)
 # README
 
 This README would normally document whatever steps are necessary to get the
