@@ -23,4 +23,8 @@ RSpec.describe AgendaEvent, type: :model do
         subject.end_time = subject.start_time - 1
         expect(subject).to_not be_valid
     end
+    it "is valid if end time is before start time" do
+        subject.end_time = subject.start_time - 1
+        expect(subject).to be_valid
+    end
   end
