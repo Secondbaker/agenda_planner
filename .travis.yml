@@ -6,7 +6,8 @@ install:
 bundler_args: --jobs=2
 script:
   - bundle exec rake db:create
-  - bundle exec rake spec
+  - bundle exec rake db:migrate
+  - bundle exec rspec test
 cache: bundler
 services:
   - postgresql
