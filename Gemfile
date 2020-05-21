@@ -29,7 +29,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # This gem is for displaying the calendar
-gem "simple_calendar", "~> 2.0"
+gem 'simple_calendar', '~> 2.0'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -39,6 +41,8 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+
+  
 end
 
 group :test do
@@ -47,6 +51,19 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+
+  # for running tests
+end
+
+# (requires master-branch versions of all related RSpec libraries)
+group :development, :test do
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
+  end
+
+  # required for rspec
+  gem 'factory_bot_rails'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
