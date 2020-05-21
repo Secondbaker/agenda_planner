@@ -1,7 +1,8 @@
 language: ruby
 rvm:
  — 2.6.5
+install:
+ - bundle update - jobs=3 - retry=3
 script:
- — bundle update — jobs=3 — retry=3
  — bundle exec rake db:create
  — bundle exec rake db:migrate
