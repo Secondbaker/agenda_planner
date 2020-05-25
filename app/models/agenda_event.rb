@@ -6,7 +6,7 @@ class AgendaEvent < ApplicationRecord
     
 
     def duration
-        nil
+        end_time - start_time
     end
 
     private
