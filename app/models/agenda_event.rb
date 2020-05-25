@@ -4,6 +4,11 @@ class AgendaEvent < ApplicationRecord
     validates_presence_of :end_time
     validate :end_time_on_or_after_start_time
     
+
+    def duration
+        nil
+    end
+
     private
     def end_time_on_or_after_start_time
         if end_time.present? && start_time.present?
