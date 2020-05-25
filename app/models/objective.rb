@@ -1,0 +1,2 @@
+class Objective < AgendaEvent
+end

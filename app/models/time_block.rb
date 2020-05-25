@@ -1,0 +1,2 @@
+class TimeBlock < AgendaEvent
+end
