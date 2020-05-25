@@ -34,6 +34,11 @@ RSpec.describe Objective, type: :model do
       subject.save
       expect(subject.duration).to eq duration
     end
-
+    it 'does not have a fixed start time' do
+      expect(subject.fixed?(:start_time)).to be false
+    end
+    it 'does not have a fixed duration' do
+      expect(subject.fixed?(:duration)).to be false
+    end
   end
 end

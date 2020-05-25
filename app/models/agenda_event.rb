@@ -4,14 +4,19 @@ class AgendaEvent < ApplicationRecord
     validates_presence_of :end_time
     validate :end_time_on_or_after_start_time
 
-    @@fixed_attributes = []
+    @fixed_attributes = []
 
     def duration
         end_time - start_time
     end
 
+    def self.fixed_attributes
+        @fixed_attributes
+    end
+
     def fixed?(attribute)
-        @@fixed_attributes.include? attribute
+        puts self.class.fixed_attributes.inspect
+        self.class.fixed_attributes.include? attribute
     end
 
     private

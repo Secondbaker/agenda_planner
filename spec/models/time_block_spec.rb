@@ -34,6 +34,11 @@ RSpec.describe TimeBlock, type: :model do
       subject.save
       expect(subject.duration).to eq duration
     end
-
+    it 'does not have fixed start time' do
+      expect(subject.fixed?(:start_time)).to be false
+    end
+    it 'has a fixed duration' do
+      expect(subject.fixed?(:duration)).to be true
+    end
   end
 end
