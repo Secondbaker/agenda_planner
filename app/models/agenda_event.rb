@@ -15,7 +15,6 @@ class AgendaEvent < ApplicationRecord
     end
 
     def fixed?(attribute)
-        puts self.class.fixed_attributes.inspect
         self.class.fixed_attributes.include? attribute
     end
 
