@@ -26,16 +26,45 @@ class ExampleController < ApplicationController
         @calendar_list = service.list_calendar_lists
       end
 
+      def calendar
+        client = Signet::OAuth2::Client.new(client_options)
+        client.update!(session[:authorization])
+    
+        service = Google::Apis::CalendarV3::CalendarService.new
+        service.authorization = client
+    
+        @calendar = service.get_calendar_list(params[:calendar_id])
+        @events = []
+        page_token = nil
+        
+        @page_count = 1
+
+        loop do
+          event_list = service.list_events(params[:calendar_id], page_token: page_token, order_by: 'startTime', single_events: true)        
+          
+          event_list.items.each do |event|
+            @events.push event
+          end
+          puts 'page_token: ' + page_token.to_s
+          puts 'next_page_token: ' + event_list.next_page_token.to_s
+          puts 'page_count: ' + @page_count.to_s
+          
+          break if page_token == event_list.next_page_token || @page_count > 10
+          page_token = event_list.next_page_token
+          @page_count += 1
+        end
+      end
+
       def events
         client = Signet::OAuth2::Client.new(client_options)
         client.update!(session[:authorization])
 
         service = Google::Apis::CalendarV3::CalendarService.new
         service.authorization = client
-
-        calendars = service.list_calendar_lists
-        calendars.each do |calendar|
-            @event_list.push service.event_list(calendar.id)
+        @event_lists = []
+        @calendars = service.list_calendar_lists
+        @calendars.items.each do |calendar|
+          @event_lists.push service.list_events(calendar.id)
         end
       end
     private

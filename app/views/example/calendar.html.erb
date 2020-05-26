@@ -1,0 +1,14 @@
+<%= link_to 'Calendars', calendars_path%>
+<p>There are <%= @events.size %> events in <%= @page_count %> pages of results:</p>
+<ul>
+    <% @events.each do |event| %>
+        <li>
+            <% if event.summary != nil %>
+                <%= event.summary %>
+            <% end %> 
+            <% if event.start != nil %>
+                Starts at: <%= event.start.date_time %>
+            <% end %>
+        </li>
+    <% end %>
+</ul>

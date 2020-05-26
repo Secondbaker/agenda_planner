@@ -1,0 +1,9 @@
+<ul>
+  <% @event_lists.each do |event_list| %>
+    <% event_list.items.each do |event| %>
+      <li><% if event.summary != nil %>
+            <%= event.summary %>
+          <% end %> (<%= event_list.inspect %>)</li>
+    <% end %>
+  <% end %>
+</ul>

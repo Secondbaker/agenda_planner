@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/callback', to: 'example#callback', as: 'callback'
   get '/calendars', to: 'example#calendars', as: 'calendars'
   get '/events', to: 'example#events', as: 'events'
+  get '/calendar/:calendar_id', to: 'example#calendar', as: 'calendar', calendar_id: /[^\/]+/
 end
